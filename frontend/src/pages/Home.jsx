@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 function Home() {
   const [contactForm, setContactForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,7 +45,7 @@ function Home() {
 
   const fetchCms = async () => {
     try {
-      const res = await fetch(`http://${window.location.hostname}:5000/api/content`);
+      const res = await fetch(`${API_URL}/api/content`);
       if (!res.ok) throw new Error('Failed to fetch content');
       const data = await res.json();
       if (Array.isArray(data)) {
@@ -59,7 +61,7 @@ function Home() {
 
   const fetchReviews = async () => {
     try {
-      const res = await fetch(`http://${window.location.hostname}:5000/api/reviews`);
+      const res = await fetch(`${API_URL}/api/reviews`);
       if (res.ok) {
         const data = await res.json();
         setReviews(data);
@@ -82,7 +84,7 @@ function Home() {
         formData.append('image', reviewImage);
       }
 
-      const res = await fetch(`http://${window.location.hostname}:5000/api/reviews`, {
+      const res = await fetch(`${API_URL}/api/reviews`, {
         method: 'POST',
         // Omit Content-Type to let the browser automatically set the multipart boundary
         body: formData
@@ -107,7 +109,7 @@ function Home() {
     setIsSubmitting(true);
     setSubmitStatus(null);
     try {
-      const response = await fetch(`http://${window.location.hostname}:5000/api/contact`, {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(contactForm),
@@ -235,7 +237,7 @@ function Home() {
                 <p className="review-text">"{rev.text}"</p>
                 <div className="review-user-info">
                   <div className="review-avatar-wrap">
-                    <img src={rev.imageUrl ? `http://${window.location.hostname}:5000${rev.imageUrl}` : "/student_review_1.png"} alt="Student Avatar" />
+                    <img src={rev.imageUrl ? `${API_URL}${rev.imageUrl}` : "/student_review_1.png"} alt="Student Avatar" />
                   </div>
                   <div>
                     <h4 className="review-user-name">{rev.name}</h4>

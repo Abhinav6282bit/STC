@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('inquiries');
   const [contacts, setContacts] = useState([]);
@@ -32,10 +34,10 @@ function AdminDashboard() {
     setLoading(true);
     try {
       const [cRes, iRes, sRes, eRes] = await Promise.all([
-        fetch(`http://${window.location.hostname}:5000/api/contacts`),
-        fetch(`http://${window.location.hostname}:5000/api/instructors`),
-        fetch(`http://${window.location.hostname}:5000/api/content`),
-        fetch(`http://${window.location.hostname}:5000/api/events`)
+        fetch(`${API_URL}/api/contacts`),
+        fetch(`${API_URL}/api/instructors`),
+        fetch(`${API_URL}/api/content`),
+        fetch(`${API_URL}/api/events`)
       ]);
       const cData = await cRes.json();
       const iData = await iRes.json();
@@ -100,8 +102,8 @@ function AdminDashboard() {
 
     try {
       const url = editingId 
-        ? `http://192.168.0.101:5000/api/instructors/${editingId}`
-        : 'http://192.168.0.101:5000/api/instructors';
+        ? `${API_URL}/api/instructors/${editingId}`
+        : `${API_URL}/api/instructors`;
       
       const res = await fetch(url, {
         method: editingId ? 'PUT' : 'POST',
@@ -124,7 +126,7 @@ function AdminDashboard() {
   const handleDeleteInstructor = async (id) => {
     setMsg({ text: 'Processing removal...', type: 'info' });
     try {
-      const res = await fetch(`http://192.168.0.101:5000/api/instructors/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/api/instructors/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setMsg({ text: 'Staff member removed successfully.', type: 'success' });
         setInstructors(prev => prev.filter(inst => inst._id !== id));
@@ -165,8 +167,8 @@ function AdminDashboard() {
     if (newEvent.image) formData.append('image', newEvent.image);
 
     const url = editingEventId 
-      ? `http://${window.location.hostname}:5000/api/events/${editingEventId}`
-      : `http://${window.location.hostname}:5000/api/events`;
+      ? `${API_URL}/api/events/${editingEventId}`
+      : `${API_URL}/api/events`;
     
     const method = editingEventId ? 'PUT' : 'POST';
 
@@ -188,7 +190,7 @@ function AdminDashboard() {
 
   const handleDeleteEvent = async (id) => {
     try {
-      const res = await fetch(`http://${window.location.hostname}:5000/api/events/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/api/events/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setMsg({ text: 'Event removed.', type: 'success' });
         setEvents(prev => prev.filter(e => e._id !== id));
@@ -202,7 +204,7 @@ function AdminDashboard() {
   // Content Management
   const handleUpdateContent = async (key, val) => {
     try {
-      const res = await fetch(`http://192.168.0.101:5000/api/content/${key}`, {
+      const res = await fetch(`${API_URL}/api/content/${key}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content: val })
@@ -359,7 +361,7 @@ function AdminDashboard() {
                     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
                       <div style={{ width: '60px', height: '60px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--accent-gold)', background: 'rgba(255,255,255,0.05)' }}>
                         {inst.imageUrl ? (
-                          <img src={`http://192.168.0.101:5000${inst.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img src={`${API_URL}${inst.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : <div style={{ width: '100%', height: '100%', display: 'grid', placeItems: 'center', fontSize: '1.5rem' }}>🥋</div>}
                       </div>
                       <div>
@@ -443,7 +445,7 @@ function AdminDashboard() {
                     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
                       <div style={{ width: '80px', height: '80px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--primary)', background: 'rgba(255,255,255,0.05)' }}>
                         {event.imageUrl ? (
-                          <img src={`http://${window.location.hostname}:5000${event.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img src={`${API_URL}${event.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : <div style={{ width: '100%', height: '100%', display: 'grid', placeItems: 'center', fontSize: '1.5rem' }}>📷</div>}
                       </div>
                       <div style={{ maxWidth: '300px' }}>

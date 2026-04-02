@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 function Instructors() {
   const [coaches, setCoaches] = useState([]);
   const [events, setEvents] = useState([]);
@@ -39,7 +41,7 @@ function Instructors() {
 
   const fetchCoaches = async () => {
     try {
-      const res = await fetch('http://192.168.0.101:5000/api/instructors');
+      const res = await fetch(`${API_URL}/api/instructors`);
       const data = await res.json();
       if (Array.isArray(data)) {
         const sorted = data.sort((a, b) => {
@@ -62,7 +64,7 @@ function Instructors() {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch(`http://${window.location.hostname}:5000/api/events`);
+      const res = await fetch(`${API_URL}/api/events`);
       if (res.ok) {
         const data = await res.json();
         setEvents(data);
@@ -130,7 +132,7 @@ function Instructors() {
                 }}>
                   {coach.imageUrl ? (
                     <img 
-                      src={`http://192.168.0.101:5000${coach.imageUrl}`} 
+                      src={`${API_URL}${coach.imageUrl}`} 
                       alt={coach.name} 
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                     />
@@ -163,7 +165,7 @@ function Instructors() {
                   <div style={{ width: '100%', height: '240px', position: 'relative' }}>
                     {event.imageUrl ? (
                       <img 
-                        src={`http://${window.location.hostname}:5000${event.imageUrl}`} 
+                        src={`${API_URL}${event.imageUrl}`} 
                         alt={event.title} 
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                       />
@@ -210,7 +212,7 @@ function Instructors() {
               
               <div style={{ width: '100%', height: '400px' }}>
                 {selectedEvent.imageUrl ? (
-                  <img src={`http://${window.location.hostname}:5000${selectedEvent.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={`${API_URL}${selectedEvent.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 ) : <div style={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.05)', display: 'grid', placeItems: 'center', fontSize: '5rem' }}>📷</div>}
               </div>
               
