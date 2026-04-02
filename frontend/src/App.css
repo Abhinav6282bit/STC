@@ -199,43 +199,110 @@
   transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Mobile Menu Overlay */
-.mobile-menu {
+/* Mobile Sidebar & Header/Footer */
+.mobile-menu-overlay {
   position: fixed;
   top: 0;
-  right: -100%;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: -85%;
+  width: 85%;
+  max-width: 350px;
   height: 100vh;
-  background: rgba(12, 15, 22, 0.98);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mobile-menu.open {
-  right: 0;
-}
-
-.mobile-links {
+  background: #0c0f16;
+  z-index: 2001;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  text-align: center;
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
 }
 
-.mobile-links a {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-main);
+.mobile-sidebar.open {
+  left: 0;
 }
 
-.mobile-links a:hover {
+.sidebar-header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-header .logo {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.sidebar-links a {
+  padding: 1.2rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.sidebar-links a:hover {
+  background: rgba(255, 255, 255, 0.03);
   color: var(--primary);
+}
+
+.sidebar-footer {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-footer h3 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sidebar-footer p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
 }
 
 .nav-login-btn {

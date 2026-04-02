@@ -83,14 +83,30 @@ function App() {
         </nav>
 
         {/* Mobile Menu Overlay */}
-        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-          <div className="mobile-links">
-            <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-            <a href="/#programs" onClick={() => setIsMobileMenuOpen(false)}>Our Programs</a>
-            <a href="/#vision" onClick={() => setIsMobileMenuOpen(false)}>Our Vision</a>
-            <a href="/#mission" onClick={() => setIsMobileMenuOpen(false)}>Our Mission</a>
+        <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+        <div className={`mobile-sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className="sidebar-header">
+            <div className="logo">
+              <img src={Logo} alt="STC Logo" className="logo-img" />
+              <span>STC</span>
+            </div>
+            <button className="close-btn" onClick={() => setIsMobileMenuOpen(false)}>&times;</button>
+          </div>
+          
+          <div className="sidebar-links">
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>HOME</Link>
+            <a href="/#programs" onClick={() => setIsMobileMenuOpen(false)}>OUR PROGRAMS</a>
+            <a href="/#vision" onClick={() => setIsMobileMenuOpen(false)}>OUR VISION</a>
+            <a href="/#mission" onClick={() => setIsMobileMenuOpen(false)}>OUR MISSION</a>
             <Link to="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
-            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</a>
+            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>CONTACT US</a>
+          </div>
+
+          <div className="sidebar-footer">
+            <h3>Contact Info</h3>
+            <p>Seung Taekwondo Club (STC)</p>
+            <p>Phone: +91 7510164000</p>
+            <p>Email: admin@seungtaekwondo.com</p>
           </div>
         </div>
 
