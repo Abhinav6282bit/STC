@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+:root {
+  --primary: #ef4444;       /* Vibrant Crimson Red */
+  --primary-glow: rgba(239, 68, 68, 0.4);
+  --accent-gold: #c29d0b;   /* Professional Gold */
+  --bg-color: #0c0f16;      /* Deep Slate Navy (Not pure black) */
+  --surface: #1a1e26;       /* Slate surface */
+  --surface-light: #2d3441;
+  --bg-footer: #0c0f16;     /* Dark footer to match theme */
+  --text-main: #fcfcfc;     /* Crisp white for dark mode */
+  --text-dark: #111827;     /* Dark text for white sections */
+  --text-muted: #94a3b8;    /* Mmuted slate */
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.04em;
+}
+
+a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-gold);
+}
+
+.section-title {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #fff 30%, var(--primary) 70%, var(--accent-gold) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  width: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-smooth);
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #C61313 0%, #a00f0f 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(198, 19, 19, 0.25);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(198, 19, 19, 0.45);
+  background: #E51A1A;
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(198, 19, 19, 0.2);
+}
+
+/* Glassmorphism helpers */
+.glass {
+  background: linear-gradient(145deg, rgba(25, 25, 25, 0.7) 0%, rgba(15, 15, 15, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Scroll Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating Contact Icons (Now local to Hero) */
+.floating-contact {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 99;
+}
+
+.float-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.float-icon:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.float-icon.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+.float-icon.instagram { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45); }
+.float-icon.phone { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+/* Minimalist Programs Grid */
+.programs-grid-minimal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.program-item {
+  text-align: left;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 2rem;
+  transition: all var(--transition-smooth);
+}
+
+.program-item:hover {
+  border-left: 3px solid var(--primary);
+  transform: translateX(10px);
+}
+
+.program-icon-wrap {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+  filter: drop-shadow(0 0 10px rgba(198, 19, 19, 0.3));
+}
+
+.program-item h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  color: #fff;
+}
+
+.program-item p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Minimalist Vision/Mission */
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/* Section Title Gradient Enhancement */
+.section-title {
+  font-size: 4rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: linear-gradient(135deg, #fff 10%, var(--primary) 70%, var(--accent-gold) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  width: 100%;
+}
+
