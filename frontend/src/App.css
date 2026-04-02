@@ -575,12 +575,20 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+  aspect-ratio: 1/1;
 }
 
 .instructor-card h3 {
   font-size: 1.75rem;
   margin-bottom: 0.3rem;
   color: var(--text-main);
+}
+
+.instructor-card .role {
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
 }
 
 .instructor-card .belt {
@@ -1035,10 +1043,38 @@ select.form-control:focus {
     font-size: 1rem;
   }
 
-  /* Instructor Cards Grid */
+  /* Instructor Cards Grid - Compact 2-column layout */
   .coaches-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    padding: 0 5px;
+  }
+
+  .instructor-card {
+    padding: 1.5rem 1rem !important;
+    border-radius: 15px !important;
+  }
+
+  .instructor-avatar {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 12px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .instructor-card h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .instructor-card .role {
+    font-size: 0.8rem !important;
+  }
+
+  .instructor-card .belt {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.5rem !important;
+    letter-spacing: 0.5px !important;
   }
 
   /* Events Grid */

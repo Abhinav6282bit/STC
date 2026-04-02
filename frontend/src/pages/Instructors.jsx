@@ -122,26 +122,19 @@ function Instructors() {
                   }
                 } : undefined}
               >
-                <div className="instructor-avatar" style={{ 
-                  overflow: 'hidden', 
-                  padding: 0, 
-                  aspectRatio: '1/1', 
-                  width: '120px', 
-                  height: '120px', 
-                  borderRadius: '15px' 
-                }}>
+                <div className="instructor-avatar">
                   {coach.imageUrl ? (
                     <img 
                       src={`${API_URL}${coach.imageUrl}`} 
                       alt={coach.name} 
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                     />
-                  ) : <div style={{ fontSize: '3rem', marginTop: '15px' }}>🥋</div>}
+                  ) : <div style={{ fontSize: '3rem', marginTop: '10px' }}>🥋</div>}
                 </div>
                 <h3>{coach.name}</h3>
-                <p style={{ color: 'var(--primary)', fontWeight: 'bold', marginBottom: '0.2rem' }}>{coach.role}</p>
+                <p className="role">{coach.role}</p>
                 <p className="belt">{coach.belt}</p>
-                <p className="bio">{coach.bio}</p>
+                <p className="bio desktop-only">{coach.bio}</p>
               </div>
             ))
           )}
