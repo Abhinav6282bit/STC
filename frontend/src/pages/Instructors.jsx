@@ -134,7 +134,7 @@ function Instructors() {
                 <h3>{coach.name}</h3>
                 <p className="role">{coach.role}</p>
                 <p className="belt">{coach.belt}</p>
-                <p className="bio desktop-only">{coach.bio}</p>
+                <p className="bio">{coach.bio}</p>
               </div>
             ))
           )}

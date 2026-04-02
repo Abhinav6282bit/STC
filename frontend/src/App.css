@@ -1044,9 +1044,9 @@ select.form-control:focus {
   }
 
   /* Instructor Cards Grid - Compact 2-column layout */
-  .coaches-grid {
+  .instructors-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
+    gap: 1.2rem !important;
     padding: 0 5px;
   }
 
