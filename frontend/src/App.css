@@ -892,21 +892,113 @@ select.form-control:focus {
   .hamburger {
     display: flex;
   }
+
+  /* Navbar */
+  .navbar {
+    padding: 1rem 4%;
+  }
   
   .navbar.scrolled {
-    padding: 1rem 5%;
+    padding: 0.8rem 4%;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    gap: 8px;
+  }
+
+  .logo-img {
+    height: 32px;
+  }
+
+  .logo span {
+    max-width: 160px;
+    line-height: 1.2;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 85vh;
+    padding: 0 5%;
   }
 
   .hero h1 {
-    font-size: 3rem;
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+    padding: 0 5%;
   }
   
   .hero-buttons {
     flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 0 10%;
   }
-  
+
+  .hero-buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Sections */
   .section {
-    padding: 5rem 5%;
+    padding: 4rem 5%;
+  }
+
+  .section-title {
+    font-size: 2rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+
+  /* Programs Grid */
+  .programs-grid-minimal {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .program-item h3 {
+    font-size: 1.4rem;
+  }
+
+  .program-item p {
+    font-size: 1rem;
+  }
+
+  /* Instructor Cards Grid */
+  .coaches-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Events Grid */
+  .events-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Vision / Mission */
+  .badge {
+    font-size: 0.75rem;
+  }
+
+  /* Reviews */
+  .review-form-horizontal {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Contact Form */
+  .contact-container {
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 4rem 5% 2rem;
   }
 
   .footer-grid {
@@ -919,26 +1011,58 @@ select.form-control:focus {
     justify-content: center;
   }
 
+  .footer-social-row {
+    justify-content: center;
+  }
+
   .footer-bottom {
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
   }
 
-  .floating-contact {
-    left: 15px;
-    bottom: 30px;
-    gap: 0.8rem;
+  /* Glass cards */
+  .glass {
+    padding: 2rem 1.5rem;
   }
 
-  .float-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.2rem;
+  /* Preloader */
+  .loader-name-main {
+    font-size: 2.5rem;
+    letter-spacing: 15px;
+    text-indent: 15px;
   }
-  
-  .review-form-horizontal {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+
+  .loader-text-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 8px;
+  }
+
+  /* Mobile Menu font adjustments */
+  .mobile-links a {
+    font-size: 1.5rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem !important;
+  }
+
+  .logo {
+    font-size: 0.95rem;
+  }
+
+  .logo span {
+    max-width: 130px;
+  }
+
+  .program-item h3 {
+    font-size: 1.2rem;
   }
 }
