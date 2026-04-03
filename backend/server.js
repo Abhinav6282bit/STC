@@ -7,6 +7,8 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const Contact = require('./models/Contact');
 const User = require('./models/User');
@@ -17,16 +19,21 @@ const Event = require('./models/Event');
 
 const app = express();
 
-// Multer Storage Configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const dir = './uploads/';
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-    cb(null, dir);
+// Cloudinary Configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Multer Storage Configuration (Cloudinary)
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'stc-uploads',
+    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+    transformation: [{ width: 1000, height: 1000, crop: 'limit' }]
   },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
 });
 const upload = multer({ storage });
 
@@ -98,6 +105,11 @@ mongoose.connect(MONGODB_URI, {
 
 // --- API ROUTES ---
 
+// Heartbeat endpoint to minimize cold starts
+app.get('/api/heartbeat', (req, res) => {
+  res.json({ status: 'operational', timestamp: new Date().toISOString() });
+});
+
 // Login
 app.post('/api/login', async (req, res) => {
   try {
@@ -158,7 +170,7 @@ app.get('/api/reviews', async (req, res) => {
 app.post('/api/reviews', upload.single('image'), async (req, res) => {
   try {
     const { name, stars, text } = req.body;
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
+    const imageUrl = req.file ? req.file.path : '';
     const newReview = new Review({ name, stars, text, imageUrl });
     await newReview.save();
     res.status(201).json(newReview);
@@ -181,7 +193,7 @@ app.get('/api/events', async (req, res) => {
 app.post('/api/events', upload.single('image'), async (req, res) => {
   try {
     const { title, description, eventDate } = req.body;
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
+    const imageUrl = req.file ? req.file.path : '';
     const newEvent = new Event({ title, description, eventDate: eventDate || Date.now(), imageUrl });
     await newEvent.save();
     res.status(201).json(newEvent);
@@ -195,7 +207,7 @@ app.put('/api/events/:id', upload.single('image'), async (req, res) => {
     const { title, description, eventDate } = req.body;
     const updateData = { title, description, eventDate };
     if (req.file) {
-      updateData.imageUrl = `/uploads/${req.file.filename}`;
+      updateData.imageUrl = req.file.path;
     }
     const updated = await Event.findByIdAndUpdate(req.params.id, updateData, { new: true });
     res.json(updated);
@@ -233,7 +245,7 @@ app.get('/api/instructors', async (req, res) => {
 app.post('/api/instructors', upload.single('image'), async (req, res) => {
   try {
     const { name, belt, bio, role, phone } = req.body;
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
+    const imageUrl = req.file ? req.file.path : '';
     const newInstructor = new Instructor({ name, belt, bio, role, phone, imageUrl });
     await newInstructor.save();
     res.status(201).json(newInstructor);
@@ -248,8 +260,8 @@ app.put('/api/instructors/:id', upload.single('image'), async (req, res) => {
     const { name, belt, bio, role, phone } = req.body;
     const updateData = { name, belt, bio, role, phone };
     if (req.file) {
-      updateData.imageUrl = `/uploads/${req.file.filename}`;
-      console.log(`[API] New photo uploaded: ${updateData.imageUrl}`);
+      updateData.imageUrl = req.file.path;
+      console.log(`[API] New Cloudinary photo uploaded: ${updateData.imageUrl}`);
     }
     const updated = await Instructor.findByIdAndUpdate(req.params.id, updateData, { new: true });
     if (!updated) {

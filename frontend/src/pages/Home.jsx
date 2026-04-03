@@ -237,7 +237,7 @@ function Home() {
                 <p className="review-text">"{rev.text}"</p>
                 <div className="review-user-info">
                   <div className="review-avatar-wrap">
-                    <img src={rev.imageUrl ? `${API_URL}${rev.imageUrl}` : "/student_review_1.png"} alt="Student Avatar" />
+                    <img src={rev.imageUrl ? (rev.imageUrl.startsWith('http') ? rev.imageUrl : `${API_URL}${rev.imageUrl}`) : "/student_review_1.png"} alt="Student Avatar" />
                   </div>
                   <div>
                     <h4 className="review-user-name">{rev.name}</h4>

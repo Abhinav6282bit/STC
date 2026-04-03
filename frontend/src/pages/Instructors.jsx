@@ -125,7 +125,7 @@ function Instructors() {
                 <div className="instructor-avatar">
                   {coach.imageUrl ? (
                     <img 
-                      src={`${API_URL}${coach.imageUrl}`} 
+                      src={coach.imageUrl.startsWith('http') ? coach.imageUrl : `${API_URL}${coach.imageUrl}`} 
                       alt={coach.name} 
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                     />

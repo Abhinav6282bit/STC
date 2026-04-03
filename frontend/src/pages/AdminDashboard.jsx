@@ -361,7 +361,7 @@ function AdminDashboard() {
                     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
                       <div style={{ width: '60px', height: '60px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--accent-gold)', background: 'rgba(255,255,255,0.05)' }}>
                         {inst.imageUrl ? (
-                          <img src={`${API_URL}${inst.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img src={inst.imageUrl.startsWith('http') ? inst.imageUrl : `${API_URL}${inst.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : <div style={{ width: '100%', height: '100%', display: 'grid', placeItems: 'center', fontSize: '1.5rem' }}>🥋</div>}
                       </div>
                       <div>
@@ -445,7 +445,7 @@ function AdminDashboard() {
                     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
                       <div style={{ width: '80px', height: '80px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--primary)', background: 'rgba(255,255,255,0.05)' }}>
                         {event.imageUrl ? (
-                          <img src={`${API_URL}${event.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img src={event.imageUrl.startsWith('http') ? event.imageUrl : `${API_URL}${event.imageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : <div style={{ width: '100%', height: '100%', display: 'grid', placeItems: 'center', fontSize: '1.5rem' }}>📷</div>}
                       </div>
                       <div style={{ maxWidth: '300px' }}>
