@@ -28,10 +28,20 @@ function FAQ() {
         <div className="container" style={{ maxWidth: '850px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <span className="badge">Knowledge Base</span>
-            <h1 className="section-title animate-on-scroll">Frequently Asked Questions</h1>
+            <h1 className="section-title animate-on-scroll">Frequently Asked Questions about Taekwondo in Nedumangad</h1>
           </div>
           <div className="faq-list animate-on-scroll" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            
+
+            <div className="faq-item" style={{ padding: '2rem', borderLeft: '3px solid var(--primary)', background: 'rgba(255,255,255,0.03)' }}>
+              <h4 style={{ color: 'var(--primary)', fontSize: '1.3rem', marginBottom: '0.8rem' }}>Where is the best place to learn Taekwondo in Nedumangad?</h4>
+              <p style={{ color: 'var(--text-muted)' }}>Seung Taekwondo Club is the premier choice for martial arts in Nedumangad, offering professional coaching with certified instructors who have over 20 years of experience and national-level achievements.</p>
+            </div>
+
+            <div className="faq-item" style={{ padding: '2rem', borderLeft: '3px solid var(--primary)', background: 'rgba(255,255,255,0.03)' }}>
+              <h4 style={{ color: 'var(--primary)', fontSize: '1.3rem', marginBottom: '0.8rem' }}>Are there Taekwondo classes near Chullimanoor for kids?</h4>
+              <p style={{ color: 'var(--text-muted)' }}>Yes! We have specialized kids' programs at our Chullimanoor location designed for children aged 5 and above. Our training builds confidence, discipline, and physical fitness in a safe and fun environment.</p>
+            </div>
+
             <div className="faq-item" style={{ padding: '2rem', borderLeft: '3px solid var(--primary)', background: 'rgba(255,255,255,0.03)' }}>
               <h4 style={{ color: 'var(--primary)', fontSize: '1.3rem', marginBottom: '0.8rem' }}>Do I need prior martial arts experience?</h4>
               <p style={{ color: 'var(--text-muted)' }}>Not at all! Our beginner classes are designed specifically for students starting from scratch. We tailor our training to fit your current fitness and skill levels.</p>
